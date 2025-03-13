@@ -25,12 +25,10 @@ data.columns.values[0] = "Anos"
 # Extracting the station names (all columns except the first one)
 stations = data.columns[1:]
 
-### COM ZEROS """
+data = data.replace(0, np.nan)
 
-""" # This 'melts' the DataFrame from wide to long format, where:
-# - 'Anos' stays as is (id_vars)
-# - Each station's data is transformed into rows under the new 'Station' and 'Days_without_Rain' columns
-# The result is a DataFrame where each row represents the number of days without rain for a specific station and year
+print(data)
+
 data_melted = data.dropna(subset=["Anos"]).melt(id_vars=['Anos'], value_vars=stations, var_name='Station', value_name='Days_without_Rain')
 
 plt.figure(figsize=(12,8))
@@ -50,33 +48,6 @@ plt.ylabel('Número de Dias Sem Chuva')
 plt.tight_layout()
 
 try:
-    plt.savefig('/app/output/dias_sem_chuva_plot_zeros.png', dpi=300)
-except Exception as e:
-    print(f"Error saving plot: {e}") """
-
-### COM NaN
-
-data = data.replace(0, np.nan)
-
-data_melted = data.dropna(subset=["Anos"]).melt(id_vars=['Anos'], value_vars=stations, var_name='Station', value_name='Days_without_Rain')
-
-""" plt.figure(figsize=(12,8))
-
-# The box plot will show the distribution (median, quartiles, outliers) of 'Days_without_Rain' for each 'Station'
-sea.boxplot(x="Station", y="Days_without_Rain", data=data_melted)
-
-# Adding a title to the plot
-plt.title('Comparação dos Dias Sem Chuva nas Estações Meteorológicas')
-
-# Adding labels to the x and y axes
-plt.xlabel('Estação Meteorológica')
-plt.xticks(rotation=45)  # Rotates the x-axis labels by 45 degrees to make them more readable
-plt.ylabel('Número de Dias Sem Chuva')
-
-# Adjusting the layout to ensure everything fits without overlap
-plt.tight_layout()
-
-try:
     plt.savefig('/app/output/dias_sem_chuva_plot_nan.png', dpi=300)
 except Exception as e:
-    print(f"Error saving plot: {e}") """
+    print(f"Error saving plot: {e}")
