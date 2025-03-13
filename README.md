@@ -11,5 +11,5 @@ a tool to substitute jupyter notebook installation for the curricular unit of AN
 
 ### running the script
 - after the first steps are completed, run the script with the '-r' flag
-- every time you make changes to the main.py you have to run the script with the '-r' flag tool
+- every time you make changes to the main.py you have to run the script with the '-r' flag
 > e.g. ./run.sh -r
